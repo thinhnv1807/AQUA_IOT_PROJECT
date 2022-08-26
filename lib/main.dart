@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
+
+//create database instance
+FirebaseDatabase database = FirebaseDatabase.instance;
+DatabaseReference ref = FirebaseDatabase.instance.refFromURL(
+    "https://console.firebase.google.com/project/thinhdatabase-bc8f4/database/thinhdatabase-bc8f4-default-rtdb/data/~2F");
+
+// Access a child of the current reference
+DatabaseReference child = ref.child("name");
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +20,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'thinh Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        //set background color to blue
+        backgroundColor: Colors.blue,
+        //set the font color to white
+        fontFamily: 'Nunito',
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'thinh Demo Home Page'),
     );
   }
 }
