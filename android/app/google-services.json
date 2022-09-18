@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14683179861",
+    "project_id": "iot-first-time-aecf4",
+    "storage_bucket": "iot-first-time-aecf4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14683179861:android:fc226e0096316574177ddc",
+        "android_client_info": {
+          "package_name": "com.example.fvm_aqua_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14683179861-kpiij9usrco1nl4v89e202pms82jtg7k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBn1aouoMgFM62VA0wF2owXLSrkVmKqX_0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14683179861-kpiij9usrco1nl4v89e202pms82jtg7k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

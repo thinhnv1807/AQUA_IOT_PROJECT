@@ -1,36 +1,47 @@
 import 'package:flutter/material.dart';
+//import firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-//create database instance
-FirebaseDatabase database = FirebaseDatabase.instance;
-DatabaseReference ref = FirebaseDatabase.instance.refFromURL(
-    "https://console.firebase.google.com/project/thinhdatabase-bc8f4/database/thinhdatabase-bc8f4-default-rtdb/data/~2F");
-
-// Access a child of the current reference
-DatabaseReference child = ref.child("name");
-
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+  MyApp({Key? key}) : super(key: key);
+  final Future<FirebaseApp> _fbapp = Firebase.initializeApp();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'thinh Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        //set background color to blue
-        backgroundColor: Colors.blue,
-        //set the font color to white
-        fontFamily: 'Nunito',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: const MyHomePage(title: 'thinh Demo Home Page'),
-    );
+        title: 'thinh Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          //set background color to blue
+          backgroundColor: Colors.blue,
+          //set the font color to white
+          fontFamily: 'Nunito',
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: FutureBuilder(
+          future: _fbapp,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (snapshot.hasData) {
+              // ignore: avoid_print
+              print('thanh cong');
+              return const MyHomePage(title: 'thinh Demo');
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        )
+
+        //const MyHomePage(title: 'thanh Demo Home Page'),
+        );
   }
 }
 
@@ -46,8 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    DatabaseReference _test = FirebaseDatabase.instance.ref().child('counter');
+
     setState(() {
       _counter++;
+      _test.set('$_counter');
+      // ignore: avoid_print
+      print('thinh');
     });
   }
 
